@@ -1,18 +1,29 @@
 import random
 
+WIDTH, HEIGHT = 30, 9
+STAR_COUNT = 42
+STARS = ("·", "·", "✧", "✦")
+
+
+def draw_sky(rng):
+	 sky = [[" " for _ in range(WIDTH)] for _ in range(HEIGHT)]
+	 positions = rng.sample(range(WIDTH * HEIGHT), STAR_COUNT)
+	 for position in positions:
+		y, x = divmod(position, WIDTH)
+		sky[y][x] = rng.choice(STARS)
+	 return sky
+
+
+def print_frame(rows):
+	print("╭" + "─" * WIDTH + "╮")
+	for row in rows:
+		print("│" + "".join(row) + "│")
+	print("╰" + "─" * WIDTH + "╯")
+
+
 def main():
 	rng = random.SystemRandom()
-	width, height = 30, 9
-	sky = [[" " for _ in range(width)] for _ in range(height)]
-
-	for _ in range(42):
-		x, y = rng.randrange(width), rng.randrange(height)
-		sky[y][x] = rng.choice(("·", "·", "✧", "✦"))
-
-	print("╭" + "─" * width + "╮")
-	for row in sky:
-		print("│" + "".join(row) + "│")
-	print("╰" + "─" * width + "╯")
+	print_frame(draw_sky(rng))
 
 	poem = rng.choice((
 		("The moon hums softly", "Silver comets cross the night", "And dawn finds us here"),
