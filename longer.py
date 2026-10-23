@@ -1,6 +1,5 @@
 import random
 
-
 def main():
 	rng = random.SystemRandom()
 	width, height = 30, 9
