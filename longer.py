@@ -6,12 +6,12 @@ STARS = ("·", "·", "✧", "✦")
 
 
 def draw_sky(rng):
-	 sky = [[" " for _ in range(WIDTH)] for _ in range(HEIGHT)]
-	 positions = rng.sample(range(WIDTH * HEIGHT), STAR_COUNT)
-	 for position in positions:
+	sky = [[" " for _ in range(WIDTH)] for _ in range(HEIGHT)]
+	positions = rng.sample(range(WIDTH * HEIGHT), STAR_COUNT)
+	for position in positions:
 		y, x = divmod(position, WIDTH)
 		sky[y][x] = rng.choice(STARS)
-	 return sky
+	return sky
 
 
 def print_frame(rows):
